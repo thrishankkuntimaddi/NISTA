@@ -33,12 +33,13 @@ export default function RootLayout() {
             .catch(console.error);
     }, []);
 
-    if (!fontsLoaded) {
+    // Avoid a blank screen on web if custom font loading is delayed or fails.
+    if (Platform.OS !== 'web' && !fontsLoaded) {
         return null;
     }
 
     return (
-        <View className="flex-1 bg-antrika">
+        <View className="flex-1 bg-antrika" style={{ flex: 1, backgroundColor: '#121417' }}>
             <StatusBar style="light" />
             <Slot />
         </View>
